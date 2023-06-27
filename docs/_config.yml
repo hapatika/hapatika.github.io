@@ -1,3 +1,4 @@
+
 # Welcome to Jekyll!
 #
 # This config file is meant for settings that affect your whole blog, values
@@ -21,9 +22,9 @@
 title: We could all be rich (don't share)
 email: your-email@example.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  A game theory coup of DLT. Pearls before Swine, because I still dream about 
+  that cuckoo druid laughing at me and other computations of expected value because 
+  I'm fiercely insecure about my discrete math skills.
 domain: hapatika.github.io       # if you want to force HTTPS, specify the domain without the http at the start, e.g. example.com
 url: https://hapatika.github.io  # the base hostname and protocol for your site, e.g. http://example.com
 baseurl: /hapatika.github.io/      # place folder name if the site is served in a subfoldr
