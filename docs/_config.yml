@@ -27,7 +27,7 @@ description: >- # this means to ignore newlines until "baseurl:"
   I'm fiercely insecure about my discrete math skills.
 domain: hapatika.github.io       # if you want to force HTTPS, specify the domain without the http at the start, e.g. example.com
 url: https://hapatika.github.io  # the base hostname and protocol for your site, e.g. http://example.com
-baseurl: /hapatika.github.io/      # place folder name if the site is served in a subfoldr
+# baseurl: /hapatika.github.io/      # place folder name if the site is served in a subfoldr
 # baseurl: "" # the subpath of your site, e.g. /blog
 # url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: bakan3k0
