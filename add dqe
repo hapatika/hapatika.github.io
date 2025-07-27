@@ -1,0 +1,81 @@
+import os
+import pandas as pd
+import re
+from datetime import datetime
+
+def process_stock_data(directory_path):
+    """
+    Process pickle files in a directory and create a multi-indexed DataFrame with stock time series data.
+    Columns are multi-indexed with (ticker, metric) and index is date.
+    
+    Parameters:
+    directory_path (str): Path to the directory containing pickle files
+    
+    Returns:
+    pandas.DataFrame: Multi-indexed DataFrame with date index and (ticker, metric) columns
+    """
+    # Initialize empty list to store DataFrames
+    all_data = []
+    
+    # Regular expression to match DQE_YYMMDD format
+    file_pattern = re.compile(r'DQE_(\d{6})\.pickle')
+    
+    # Iterate through files in directory
+    for filename in os.listdir(directory_path):
+        match = file_pattern.match(filename)
+        if match:
+            # Extract date from filename
+            date_str = match.group(1)
+            try:
+                # Convert YYMMDD to datetime
+                date = datetime.strptime(date_str, '%y%m%d').date()
+                
+                # Read pickle file
+                file_path = os.path.join(directory_path, filename)
+                df = pd.read_pickle(file_path)
+                
+                # Ensure required columns exist
+                required_columns = ['ticker', 'volume', 'notional', 'open_interest', 'spot_price']
+                if not all(col in df.columns for col in required_columns):
+                    print(f"Warning: File {filename} missing some required columns")
+                    continue
+                
+                # Add date column
+                df['date'] = date
+                
+                # Append to list
+                all_data.append(df)
+                
+            except Exception as e:
+                print(f"Error processing file {filename}: {str(e)}")
+                continue
+    
+    if not all_data:
+        raise ValueError("No valid pickle files found in the directory")
+    
+    # Concatenate all DataFrames
+    combined_df = pd.concat(all_data, ignore_index=True)
+    
+    # Create pivot table with date as index and multi-index columns (ticker, metric)
+    result_df = combined_df.pivot_table(
+        values=['volume', 'notional', 'open_interest', 'spot_price'],
+        index='date',
+        columns='ticker',
+        aggfunc='first'  # Use first in case of duplicates
+    )
+    
+    # Sort the index for better readability
+    result_df = result_df.sort_index()
+    
+    # Ensure the columns are in MultiIndex format
+    result_df.columns = pd.MultiIndex.from_tuples(
+        [(ticker, metric) for metric, ticker in result_df.columns],
+        names=['ticker', 'metric']
+    )
+    
+    return result_df
+
+# Example usage:
+# directory = "path/to/your/folder"
+# result = process_stock_data(directory)
+# print(result)
