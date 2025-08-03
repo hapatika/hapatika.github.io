@@ -163,3 +163,30 @@ df['MA_200'] = df['Notional Traded'].rolling(window=200).mean()
 
 # Display the DataFrame with moving averages
 print(df)
+
+
+import pandas as pd
+
+# Sample DataFrame with 'Date', 'Ticker', 'Notional Traded', 'MA_20', and 'MA_200' columns
+data = {
+    'Date': ['2025-07-01', '2025-07-02', '2025-07-03', '2025-07-04', '2025-07-05'],
+    'Ticker': ['AAPL', 'GOOGL', 'MSFT', 'AMZN', 'TSLA'],
+    'Notional Traded': [1000, 1100, 1200, 1300, 1400],
+    'MA_20': [1050, 1150, 1250, 1350, 1450],  # Sample 20-day Moving Average values
+    'MA_200': [1200, 1250, 1300, 1350, 1400]  # Sample 200-day Moving Average values
+}
+
+df = pd.DataFrame(data)
+
+# Convert 'Date' column to datetime
+df['Date'] = pd.to_datetime(df['Date'])
+
+# Check if MA_20 is above MA_200 on a daily basis
+df['MA_20_Above_MA_200'] = df['MA_20'] > df['MA_200']
+
+# Filter the DataFrame to get the ticker names where MA_20 is above MA_200
+filtered_df = df[df['MA_20_Above_MA_200']
+
+# Print the ticker names where MA_20 is above MA_200
+print("Ticker names where MA_20 is above MA_200:")
+print(filtered_df['Ticker'].tolist())
