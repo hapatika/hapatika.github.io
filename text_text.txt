@@ -1,0 +1,29 @@
+1. Define Requirements
+Your dashboard should:Display upcoming IPOs in Korea and Taiwan with details like company name, IPO date, price range, number of shares, and exchange (e.g., Korea Exchange (KRX) for Korea, Taiwan Stock Exchange (TWSE) for Taiwan).
+Update dynamically with real-time or near-real-time data.
+Be user-friendly, with filters or sorting options (e.g., by date, exchange, or industry).
+Optionally include metrics like Grey Market Premium (GMP) or subscription status, if available.
+
+2. Identify Data Sources
+To track IPOs in Korea and Taiwan, you need reliable data sources. Here are some options:Korea:Korea Exchange (KRX): Provides official IPO announcements and calendars. The website (https://global.krx.co.kr) offers IPO schedules, but you may need to scrape or check for API access.
+Financial Supervisory Service (FSS): Korea’s regulator provides IPO filings through its DART system (http://dart.fss.or.kr), which includes prospectuses and IPO details.
+News Portals: Sites like Yonhap News or Pulse by Maeil Business Newspaper often report upcoming IPOs.
+Financial Websites: Global platforms like Moneycontrol, Investing.com, or Chittorgarh.com may include Korean IPOs, though coverage might be limited for APAC.
+
+Taiwan:Taiwan Stock Exchange (TWSE): The TWSE website (https://www.twse.com.tw/en/) lists IPOs and public offerings under its “Market Information” section.
+Taipei Exchange (TPEx): Covers smaller companies and SMEs (https://www.tpex.org.tw/en/).
+Securities and Futures Bureau (SFB): Taiwan’s regulator provides IPO filings and approvals.
+Financial News: Sources like Taiwan Business TOPICS or local outlets (e.g., Economic Daily News) report IPO plans.
+
+Global Sources:Yahoo Finance: Offers an IPO calendar with some APAC coverage.
+
+Investing.com: Lists upcoming and recent IPOs globally, potentially including Korea and Taiwan.
+
+IPOScoop.com: Provides IPO calendars, though primarily U.S.-focused; APAC coverage may be limited.
+
+Exchange Data International (EDI): Offers worldwide IPO data via APIs, including APAC markets.
+
+EODHD APIs: Provides access to upcoming IPOs and splits data, which can be filtered for Korea and Taiwan.
+
+Note: Local sources (KRX, TWSE) are critical for Korea and Taiwan, as global platforms may not cover these markets comprehensively. Check for APIs first, as they’re more reliable than scraping, which can be brittle due to website changes or legal restrictions.3. Gather DataYou can obtain IPO data via APIs or web scraping. Here’s how to approach each:Option 1: Use APIsAPIs are preferred for structured, reliable data. Check if KRX or TWSE offers APIs (many exchanges require registration or paid access). Alternatively, use a third-party API like EODHD or Intrinio.Example with EODHD API (Korea and Taiwan data may require filtering):
+
