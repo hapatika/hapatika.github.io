@@ -143,3 +143,23 @@ def process_file(file_path):
 file_path = 'your_file.txt'  # Replace with your file path
 result_df = process_file(file_path)
 print(result_df)
+
+import pandas as pd
+
+# Sample DataFrame with 'Date' and 'Notional Traded' columns
+data = {
+    'Date': ['2025-07-01', '2025-07-02', '2025-07-03', '2025-07-04', '2025-07-05'],
+    'Notional Traded': [1000, 1100, 1200, 1300, 1400]
+}
+
+df = pd.DataFrame(data)
+
+# Convert 'Date' column to datetime
+df['Date'] = pd.to_datetime(df['Date'])
+
+# Calculate the 20-day and 200-day moving averages for 'Notional Traded'
+df['MA_20'] = df['Notional Traded'].rolling(window=20).mean()
+df['MA_200'] = df['Notional Traded'].rolling(window=200).mean()
+
+# Display the DataFrame with moving averages
+print(df)
